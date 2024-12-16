@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "../../../../components/navbar/layout/Layout";
 
-const Form = () => {
+const Form = ({ type }) => {
   return (
     <>
       <Layout>
         <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-lg shadow p-6 dark:bg-gray-800 dark:border-gray-700">
           <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-            Add Blog
+            {type} Blog
           </h2>
           <form>
             {/* Blog Title */}
@@ -15,9 +15,7 @@ const Form = () => {
               <label
                 htmlFor="blogTitle"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Blog Title
-              </label>
+              ></label>
               <input
                 type="text"
                 id="blogTitle"
