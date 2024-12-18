@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Form = ({ type }) => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    username: "",
+    confirmPassword: "",
+  });
+  const [agreeTerms, setAgreeTerms] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleCheckboxChange = () => {
+    setAgreeTerms(!agreeTerms);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", data);
+    console.log("Agreed to Terms:", agreeTerms);
+    // Add your form submission logic here
+  };
+
   return (
     <>
       <section className="bg-gray-100">
@@ -40,7 +64,7 @@ const Form = ({ type }) => {
               <div className="text-gray-400 text-center mb-3 font-bold">
                 <small>Or register with credentials</small>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 {type === "Login" && (
                   <>
                     <div className="relative w-full mb-3">
@@ -51,8 +75,11 @@ const Form = ({ type }) => {
                         Email
                       </label>
                       <input
+                        onChange={handleChange}
+                        name="email"
                         type="email"
                         id="email"
+                        value={data.email}
                         className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email"
                       />
@@ -65,8 +92,11 @@ const Form = ({ type }) => {
                         Password
                       </label>
                       <input
+                        onChange={handleChange}
+                        name="password"
                         type="password"
                         id="password"
+                        value={data.password}
                         className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Password"
                       />
@@ -79,13 +109,16 @@ const Form = ({ type }) => {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                        htmlFor="name"
+                        htmlFor="username"
                       >
                         Name
                       </label>
                       <input
+                        onChange={handleChange}
+                        name="username"
                         type="text"
-                        id="name"
+                        id="username"
+                        value={data.username}
                         className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Full Name"
                       />
@@ -98,8 +131,11 @@ const Form = ({ type }) => {
                         Email
                       </label>
                       <input
+                        onChange={handleChange}
+                        name="email"
                         type="email"
                         id="email"
+                        value={data.email}
                         className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email"
                       />
@@ -112,8 +148,11 @@ const Form = ({ type }) => {
                         Password
                       </label>
                       <input
+                        onChange={handleChange}
+                        name="password"
                         type="password"
                         id="password"
+                        value={data.password}
                         className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Password"
                       />
@@ -126,8 +165,11 @@ const Form = ({ type }) => {
                         Confirm Password
                       </label>
                       <input
+                        onChange={handleChange}
+                        name="confirmPassword"
                         type="password"
                         id="confirmPassword"
+                        value={data.confirmPassword}
                         className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Confirm Password"
                       />
@@ -137,8 +179,10 @@ const Form = ({ type }) => {
                 <div>
                   <label className="inline-flex items-center cursor-pointer">
                     <input
+                      onChange={handleCheckboxChange}
                       id="agreeTerms"
                       type="checkbox"
+                      checked={agreeTerms}
                       className="form-checkbox border-0 rounded text-blue-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                     />
                     <span className="ml-2 text-sm font-semibold text-gray-600">
@@ -161,35 +205,6 @@ const Form = ({ type }) => {
             </div>
           </div>
         </div>
-        <footer className="relative pt-8 pb-6 mt-2">
-          <div className="container mx-auto px-2">
-            <div className="flex flex-wrap items-center md:justify-between justify-center">
-              <div className="w-full md:w-6/12 px-4 mx-auto text-center">
-                <div className="text-sm text-gray-500 font-semibold py-1">
-                  Made with{" "}
-                  <a
-                    href="https://www.creative-tim.com/product/notus-js"
-                    className="text-gray-500 hover:text-gray-800"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Notus JS
-                  </a>{" "}
-                  by{" "}
-                  <a
-                    href="https://www.creative-tim.com"
-                    className="text-gray-500 hover:text-gray-800"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Creative Tim
-                  </a>
-                  .
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
       </section>
     </>
   );
