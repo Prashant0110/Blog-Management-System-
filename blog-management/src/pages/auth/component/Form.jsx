@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ type }) => {
+const Form = ({ type, onSubmit }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -20,6 +20,7 @@ const Form = ({ type }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onSubmit(data);
     console.log("Form Data Submitted:", data);
     console.log("Agreed to Terms:", agreeTerms);
     // Add your form submission logic here
