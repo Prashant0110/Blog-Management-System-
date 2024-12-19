@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./component/Form";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Login = () => {
         .post("https://react30.onrender.com/api/user/login", data)
         .then((response) => {
           if (response.status === 200) {
-            navigate("/home");
+            navigate("/");
           } else {
             alert("Something went wrong");
           }
