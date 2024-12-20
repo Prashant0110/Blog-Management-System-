@@ -205,6 +205,13 @@ const Form = ({ type, onSubmit }) => {
               </form>
             </div>
           </div>
+          {type==="Register" &&(
+            <Link to="/login" style={{color:"skyblue"}}>Go to Login</Link>
+          ): (
+            <Link to="/register" style={{color:"skyblue"}}>Go to Register</Link>
+          )
+          
+          }
         </div>
       </section>
     </>
