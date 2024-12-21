@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Ensure you have this import for Link to work
 
 const Form = ({ type, onSubmit }) => {
   const [data, setData] = useState({
@@ -177,6 +178,7 @@ const Form = ({ type, onSubmit }) => {
                     </div>
                   </>
                 )}
+
                 <div>
                   <label className="inline-flex items-center cursor-pointer">
                     <input
@@ -194,6 +196,7 @@ const Form = ({ type, onSubmit }) => {
                     </span>
                   </label>
                 </div>
+
                 <div className="text-center mt-6">
                   <button
                     className="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
@@ -201,17 +204,20 @@ const Form = ({ type, onSubmit }) => {
                   >
                     {type}
                   </button>
+
+                  {type === "Register" ? (
+                    <Link to="/login" style={{ color: "skyblue" }}>
+                      Go to Login
+                    </Link>
+                  ) : (
+                    <Link to="/register" style={{ color: "skyblue" }}>
+                      Go to Register
+                    </Link>
+                  )}
                 </div>
               </form>
             </div>
           </div>
-          {type==="Register" &&(
-            <Link to="/login" style={{color:"skyblue"}}>Go to Login</Link>
-          ): (
-            <Link to="/register" style={{color:"skyblue"}}>Go to Register</Link>
-          )
-          
-          }
         </div>
       </section>
     </>
