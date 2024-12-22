@@ -1,7 +1,12 @@
 import React from "react";
 import Layout from "../../../../components/navbar/layout/Layout";
 
-const Form = ({ type }) => {
+const Form = ({ type, onSubmit }) => {
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    image: "",
+  });
   return (
     <>
       <Layout>
