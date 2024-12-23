@@ -1,13 +1,14 @@
 import React from "react";
-import Layout from "../../components/navbar/layout/Layout";
-import Form from "../../pages/blog/components/form/Form";
+import Form from "./components/form/Form";
 import axios from "axios";
-import baseUrl from "../../config";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/navbar/layout/Layout";
+
+const baseUrl = "https://react30.onrender.com/api";
+
 const AddBlog = () => {
   const navigate = useNavigate();
-
-  async function handleBlog(data) {
+  const handleCreateBlog = async (data) => {
     try {
       const response = await axios.post(`${baseUrl}/blog`, data, {
         headers: {
@@ -17,18 +18,17 @@ const AddBlog = () => {
       });
       if (response.status === 201) {
         navigate("/");
+      } else {
+        alert("Something went wrong");
       }
     } catch (error) {
-      console.error("Error adding blog:", error);
+      alert(error?.response?.data?.message);
     }
-  }
-
+  };
   return (
-    <>
-      <Layout>
-        <Form type="Create" onSubmit={handleBlog} />
-      </Layout>
-    </>
+    <Layout>
+      <Form type="Create" onSubmit={handleCreateBlog} />
+    </Layout>
   );
 };
 

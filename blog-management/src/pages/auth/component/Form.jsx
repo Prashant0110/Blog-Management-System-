@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Ensure you have this import for Link to work
+import { Link } from "react-router-dom";
 
 const Form = ({ type, onSubmit }) => {
   const [data, setData] = useState({
@@ -22,9 +22,6 @@ const Form = ({ type, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(data);
-    console.log("Form Data Submitted:", data);
-    console.log("Agreed to Terms:", agreeTerms);
-    // Add your form submission logic here
   };
 
   return (

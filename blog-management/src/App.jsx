@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/blog/Home";
 import Register from "./pages/auth/Register";
@@ -16,8 +15,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/blog/add" element={<AddBlog />} />
-          <Route path="/blog/edit" element={<EditBlog />} />
-          <Route path="/blog/id" element={<SingleBlog />} />
+          <Route path="/blog/:id/edit" element={<EditBlog />} />
+          <Route path="/blog/:id" element={<SingleBlog />} />
         </Routes>
       </BrowserRouter>
     </>
