@@ -8,27 +8,20 @@ const baseUrl = "https://react30.onrender.com/api/user";
 const Login = () => {
   const navigate = useNavigate();
 
-  async function handleLogin(data) {
+  const handleLogin = async (data) => {
     try {
-      const response = await axios.post(`${baseUrl}/login`, data);
+      const response = await axios.post(`${baseUrl}/user/login`, data);
 
       if (response.status === 200 && response?.data?.token) {
-        // Store token in localStorage
+        // Store the complete token with Bearer prefix
         localStorage.setItem("token", response.data.token);
-        console.log("Login successful. Token:", response.data.token);
-
-        // Navigate to the homepage
         navigate("/");
-      } else {
-        alert("Unexpected response from server. Please try again.");
       }
     } catch (error) {
-      const errorMessage =
-        error?.response?.data?.message || "An error occurred during login.";
-      console.error("Login error:", errorMessage);
-      alert(`Error: ${errorMessage}`);
+      console.error("Login error:", error.response);
+      alert(error?.response?.data?.message || "Login failed");
     }
-  }
+  };
 
   return (
     <>
