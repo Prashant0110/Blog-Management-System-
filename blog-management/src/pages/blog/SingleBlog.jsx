@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../../components/navbar/layout/Layout";
 import { Link, useParams } from "react-router-dom";
+import { use } from "react";
 
 const SingleBlog = () => {
   const baseUrl = "https://react30.onrender.com/api/user";
   const { id } = useParams();
 
   // State management
-  const [blog, setBlog] = useState(null); // Blog data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -52,6 +53,24 @@ const SingleBlog = () => {
     );
   }
 
+  //Delete blog function
+  const deleteBlog = async () => {
+    try {
+      const response = await axios.delete(`${baseUrl}/blog/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      if (response.status === 200) {
+        navigate("/");
+      } else {
+        alert("Something went wrong. Try again !");
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
+
   if (!blog) {
     return (
       <Layout>
@@ -84,7 +103,10 @@ const SingleBlog = () => {
                   </Link>
                 </div>
                 <div className="w-1/2 px-2">
-                  <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">
+                  <button
+                    onClick={deleteBlog}
+                    className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600"
+                  >
                     Delete
                   </button>
                 </div>
