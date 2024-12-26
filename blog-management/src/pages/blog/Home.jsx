@@ -3,7 +3,7 @@ import Layout from "../../components/navbar/layout/Layout";
 import Cards from "./components/cards/Cards";
 import Navbar from "../../components/navbar/Navbar";
 import axios from "axios";
-const baseUrl = "https://react30.onrender.com/api";
+const baseUrl = "https://react30.onrender.com/api/user";
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async () => {
