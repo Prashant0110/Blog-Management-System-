@@ -135,5 +135,6 @@ const SingleBlog = () => {
     </Layout>
   );
 };
+// Completed edit and deleted functionality
 
 export default SingleBlog;
